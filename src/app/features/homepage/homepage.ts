@@ -1,7 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-homepage',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './homepage.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
