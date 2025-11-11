@@ -1,76 +1,50 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-interface Proyecto {
+interface Proyecto{
   id: number;
   nombre: string;
   descripcion: string;
 }
 
 @Component({
-  selector: 'app-proyectos-page',
+  selector: 'app-proyectopage',
   standalone: true,
   imports: [CommonModule],
-  template: `
-    <h1>Proyectos</h1>
-
-    <section>
-      <div>
-        <h3>Agregar proyecto</h3>
-        <h4>Proyecto a agregar {{ name() }}</h4>
-        <input
-          type="text"
-          placeholder="Nombre del proyecto"
-          [value]="name()"
-          (input)="changeName(txtName.value)"
-          #txtName
-        />
-        <input
-          type="text"
-          placeholder="Descripcion del proyecto"
-          [value]="description()"
-          (input)="changeDescription(txtDescription.value)"
-          #txtDescription
-        />
-        <button (click)="addProyecto()">Agregar</button>
-      </div>
-
-      <div>
-        <h3>Listado</h3>
-        <ul>
-          <li *ngFor="let proyecto of proyectos()">{{ proyecto.nombre }} - {{ proyecto.descripcion }}</li>
-        </ul>
-      </div>
-    </section>
-  `,
+  templateUrl: './proyectopage.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProyectosPage { 
+export class ProyectosPage {
+  
+  name=signal('');
+  descripcion=signal('');
 
-  name = signal('');
-  description = signal('');
-  proyectos = signal<Proyecto[]>([
-    { id: 1, nombre: 'Proyecto 1', descripcion: 'Descripción del proyecto 1' }
-  ]);
+  proyectos=signal<Proyecto[]>([
+    {
+      id: 1,nombre: 'Proyecta A',
+      descripcion:'descripcion'
+    }
+  ])
 
-  changeName(value: string) {
+  changeName(value: string){
     this.name.set(value);
   }
-  
-  changeDescription(value: string) {
-    this.description.set(value);
+  changeDescription(value: string){
+    this.descripcion.set(value);
   }
+  addProyecto(nameVal?: string, descVal?: string){
+    const nombre = (typeof nameVal === 'string' && nameVal.length > 0) ? nameVal : this.name();
+    const descripcion = (typeof descVal === 'string' && descVal.length > 0) ? descVal : this.descripcion();
 
-  addProyecto() {
-    const nuevosProyectos = [...this.proyectos()];
     const newProyecto: Proyecto = {
-      id: nuevosProyectos.length + 1,
-      nombre: this.name(),
-      descripcion: this.description()
+      id: this.proyectos().length + 1,
+      nombre,
+      descripcion
     };
-    nuevosProyectos.push(newProyecto);
-    this.proyectos.set(nuevosProyectos);
+
+    this.proyectos.set([...this.proyectos(), newProyecto]);
+   
     this.name.set('');
-    this.description.set('');
+    this.descripcion.set('');
   }
-}
+ }

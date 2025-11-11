@@ -1,33 +1,34 @@
 <h1>Proyectos</h1>
 
 <section>
-  <div>
     <h3>Agregar proyecto</h3>
-    <h4>Proyecto a agregar {{name()}}</h4>
-    <input 
-        type="text" 
-        placeholder="Nombre del proyecto" 
+    <h4>Proyecto a agregar: {{ name() }}</h4>
+
+    <input
+        type="text"
+        placeholder="Nombre del proyecto"
         [value]="name()"
-        (change)="changeName(txtName.value)"
+        (input)="changeName(txtName.value)"
         #txtName
     />
     <input 
         type="text"
-        placeholder="Descripcion del proyecto" 
-        [value]="description()"
-        (change)="changeName(txtName.value)"
+        placeholder="Descripcion del proyecto"
+        [value]="descripcion()"
+        (input)="changeDescription(txtDescription.value)"
         #txtDescription
     />
-    <button>Agregar </button>
 
-    <div>
-    <div>
+    <button (click)="addProyecto()">Agregar</button>
+
+        <div>
             <h3>Listado</h3>
+            <h2>Listado de Proyectos</h2>
             <ul>
-               @for (proyecto of proyectos(); track $index) {
-            <li>{{proyecto.nombre}} - {{proyecto.descripcion}}</li>
-        } 
-                
+                <li *ngFor="let proyecto of proyectos()">
+                    {{ proyecto.nombre }} - {{ proyecto.descripcion }}
+                </li>
             </ul>
-    
-    <section>
+        </div>
+
+</section>

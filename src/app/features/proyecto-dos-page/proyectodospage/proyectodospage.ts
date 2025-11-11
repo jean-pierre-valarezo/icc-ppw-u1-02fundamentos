@@ -1,26 +1,17 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from "@angular/router";
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ProyectosService } from './services/proyectos-service';
+import { ListadoProyectos } from "../../proyectos-page/proyectopage/components/listado-proyectos/listado-proyectos";
+import { AddProyecto } from "../../proyectos-page/proyectopage/components/add-proyecto/add-proyecto";
+
 @Component({
-  selector: 'app-proyectodospage',
-  imports: [RouterLink, RouterLinkActive],
+  selector: 'app-proyecto-dos-page',
+  standalone: true,
+  imports: [ListadoProyectos, AddProyecto],
   templateUrl: './proyectodospage.html',
-  styles: [`
-    nav {
-      background-color: #159;
-      padding: 1rem;
-      overflow: hidden;
-    }
-    a {
-      color: white;
-      text-decoration: none;
-      margin-right: 1rem;
-      font-weight: bold;
-    }
-    a.active {
-      color: yellow;
-      text-decoration: underline;
-    }
-  `],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Proyectodospage { }
+export class ProyectoDosPage {
+  proyectosService = inject(ProyectosService);
+  
+}
+

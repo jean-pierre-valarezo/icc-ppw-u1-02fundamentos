@@ -2,7 +2,13 @@ import { Routes } from '@angular/router';
 import { Homepage } from './features/homepage/homepage';
 import { PerfilPage } from './features/perfilpage/perfilpage';
 import { ProyectosPage } from './features/proyectos-page/proyectopage/proyectopage';
-import { Proyectodospage } from './features/proyecto-dos-page/proyectodospage/proyectodospage';
+import { ProyectoDosPage } from './features/proyecto-dos-page/proyectodospage/proyectodospage';
+
+
+
+
+
+
 
 export const routes: Routes = [
   {
@@ -22,8 +28,7 @@ export const routes: Routes = [
     path: 'proyectos',
     component: ProyectosPage
   },
-  { 
-    path: 'proyecto-dos', 
-    component: Proyectodospage
-  },
+  { path: 'proyecto-dos', 
+    component: ProyectoDosPage },
+
 ];

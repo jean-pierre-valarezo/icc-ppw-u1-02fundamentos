@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ListadoProyectos } from '../proyectos-page/proyectopage/components/listado-proyectos/listado-proyectos';
+
 
 @Component({
   selector: 'app-homepage',
